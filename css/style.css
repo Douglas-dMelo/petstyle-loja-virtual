@@ -1,5 +1,7 @@
-/* Pequenos ajustes */
+/*
+Estilos adicionais do projeto
+*/
 
 body {
-font-family: system-ui;
+  scroll-behavior: smooth;
 }

@@ -1,57 +1,48 @@
+/*
+Sistema de carrinho de compras
+*/
+
 let cart = [];
 
-function addToCart(productName) {
-  cart.push(productName);
+/* adiciona produto ao carrinho */
 
-  updateCart();
+function addToCart(productId) {
+  const product = products.find((p) => p.id === productId);
+
+  cart.push(product);
+
+  renderCart();
 }
 
-function updateCart() {
-  const list = document.getElementById("cart-items");
-  const count = document.getElementById("cart-count");
-  const totalElement = document.getElementById("cart-total");
+/* renderiza carrinho */
 
-  list.innerHTML = "";
+function renderCart() {
+  const cartItems = document.getElementById("cartItems");
+
+  const totalElement = document.getElementById("cartTotal");
+
+  cartItems.innerHTML = "";
 
   let total = 0;
-
-  /* percorre todos os itens do carrinho */
 
   cart.forEach((item) => {
     total += item.price;
 
-    list.innerHTML += `
-
-<li class="flex justify-between border-b pb-2">
-
+    cartItems.innerHTML += `
+<div class="flex justify-between mb-2">
 <span>${item.name}</span>
-
-<span class="text-purple-600">
-R$${item.price}
-</span>
-
-</li>
-
+<span>R$ ${item.price}</span>
+</div>
 `;
   });
 
-  /* atualiza contador */
-
-  count.innerText = cart.length;
-
-  /* atualiza total */
-
-  totalElement.innerText = "R$" + total.toFixed(2);
+  totalElement.textContent = total.toFixed(2);
 }
+
+/* abrir e fechar carrinho */
+
 function toggleCart() {
-  const cartElement = document.getElementById("cart");
+  const cart = document.getElementById("cartSidebar");
 
-  cartElement.classList.toggle("translate-x-full");
-}
-function addToCart(productName) {
-  const product = products.find((p) => p.name === productName);
-
-  cart.push(product);
-
-  updateCart();
+  cart.classList.toggle("translate-x-full");
 }
