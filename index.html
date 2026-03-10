@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Pet&Style</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-50 text-gray-800">
+    <!-- ================= HEADER ================= -->
+
+    <header class="bg-white shadow-md">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-purple-600">🐾 Pet&Style</h1>
+
+        <nav class="flex gap-6 font-medium">
+          <a href="#">Home</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <!-- BOTÃO DO CARRINHO -->
+
+        <button onclick="toggleCart()" class="relative text-xl">
+          🛒
+
+          <span
+            id="cart-count"
+            class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full">
+            0
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section
+      class="py-20 bg-gradient-to-r from-purple-500 to-purple-700 text-white text-center">
+      <h2 class="text-4xl font-bold mb-4">Estilo e conforto para seu pet</h2>
+
+      <p class="mb-6">
+        Produtos modernos e confortáveis para seu melhor amigo.
+      </p>
+
+      <a
+        href="#produtos"
+        class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:scale-105 transition">
+        Ver Produtos
+      </a>
+    </section>
+
+    <!-- ================= PRODUTOS ================= -->
+
+    <section id="produtos" class="py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Nossos Produtos</h2>
+
+        <!-- Container onde os produtos serão inseridos via JS -->
+
+        <div
+          id="product-list"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      </div>
+    </section>
+
+    <!-- ================= DEPOIMENTOS ================= -->
+
+    <section class="bg-gray-100 py-16">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-10">O que nossos clientes dizem</h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-xl shadow">
+            <p>"Meu cachorro adorou a caminha!"</p>
+            <span class="font-semibold">Ana Silva</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow">
+            <p>"Entrega rápida e produtos lindos."</p>
+            <span class="font-semibold">Carlos Souza</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow">
+            <p>"A coleira é incrível!"</p>
+            <span class="font-semibold">Mariana Costa</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTATO ================= -->
+
+    <section id="contato" class="py-16">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-6">Contato</h2>
+
+        <p>Email: contato@petstyle.com</p>
+        <p>Telefone: (11) 99999-9999</p>
+
+        <form class="mt-6 flex flex-col gap-4">
+          <input type="text" placeholder="Nome" class="border p-3 rounded-lg" />
+
+          <input
+            type="email"
+            placeholder="Email"
+            class="border p-3 rounded-lg" />
+
+          <textarea
+            placeholder="Mensagem"
+            class="border p-3 rounded-lg"></textarea>
+
+          <button
+            class="bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= MODAL PRODUTO ================= -->
+
+    <div
+      id="product-modal"
+      class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+      <div class="bg-white p-6 rounded-xl max-w-md">
+        <img id="modal-image" class="rounded-lg mb-4" />
+
+        <h3 id="modal-title" class="text-xl font-bold"></h3>
+
+        <p id="modal-description" class="text-gray-600"></p>
+
+        <p id="modal-price" class="text-purple-600 font-bold mt-2"></p>
+
+        <button
+          onclick="closeModal()"
+          class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg">
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= CARRINHO LATERAL ================= -->
+
+    <div
+      id="cart"
+      class="fixed right-0 top-0 w-80 h-full bg-white shadow-lg transform translate-x-full transition duration-300 flex flex-col">
+      <div class="p-6 flex justify-between items-center border-b">
+        <h2 class="text-xl font-bold">Carrinho</h2>
+
+        <button onclick="toggleCart()">✖</button>
+      </div>
+
+      <!-- LISTA DE PRODUTOS -->
+
+      <ul id="cart-items" class="p-6 space-y-3 flex-1 overflow-auto"></ul>
+
+      <!-- TOTAL DO CARRINHO -->
+
+      <div class="p-6 border-t">
+        <p class="text-lg font-semibold">
+          Total:
+          <span id="cart-total" class="text-purple-600"> R$0 </span>
+        </p>
+
+        <button
+          class="mt-4 w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700">
+          Finalizar Compra
+        </button>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="js/product.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
